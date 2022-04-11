@@ -27,10 +27,10 @@ public class Player {
         this.experience = 0;
         this.level = Levels.LEVEL_1;
         this.gold = 0;
-        this.hp = 40 + this.getPlayerClass().getHp();
-        this.mp = 40 + this.getPlayerClass().getMP();
+        this.hp = 100 + this.getPlayerClass().getHp();
+        this.mp = 80 + this.getPlayerClass().getMP();
         this.strength = 15 + this.getPlayerClass().getStrength();
-        this.defense = 10 + this.getPlayerClass().getDefense();
+        this.defense = 2 + this.getPlayerClass().getDefense();
         this.magicalMight = 15 + this.getPlayerClass().getMagicalMight();
     }
 

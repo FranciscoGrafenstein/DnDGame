@@ -1,14 +1,12 @@
 package Entities;
 
-import Utilities.Dice;
-
 public enum Creatures {
-    OGRE("Ogre", 10, 5),
-    ZOMBIE("Zombie", 20, 2),
+    OGRE("Ogre", 10, 10),
+    ZOMBIE("Zombie", 20, 9),
     TROLL("Troll", 40, 30),
-    DRAUGR("Draugr", 25, 7),
+    DRAUGR("Draugr", 25, 12),
     VAMPIRE("Vampire", 50, 30),
-    DRAGON("Dragon", 150, 120),
+    DRAGON("Dragon", 60, 45),
     WEREWOLF("Werewolf", 30, 25),
     ;
 
@@ -55,9 +53,11 @@ public enum Creatures {
             randomCreature = WEREWOLF;
         }
         if (index == 6){
+            randomCreature = VAMPIRE;
+        }
+        if (index == 7){
             randomCreature = DRAGON;
         }
-
         return  randomCreature;
     }
 }

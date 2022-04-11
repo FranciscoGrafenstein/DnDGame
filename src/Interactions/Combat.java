@@ -2,6 +2,7 @@ package Interactions;
 
 import Entities.*;
 import Items.*;
+import Magic.Magic;
 import Magic.Spells;
 import Utilities.Delays;
 import Utilities.Dice;
@@ -31,22 +32,28 @@ public class Combat {
     }
 
     public static void PlayerMagicAttack(Player character, Creature enemy, Spells spell, int faces) {
-        System.out.println("------------------------------Combat-------------------------------\n");
-        Delays.timeDelay(1000);
-        int totalDamage = (character.getMagicalMight() + spell.getDamage() + Dice.DiceFunction(faces));
-        character.setMp(character.getMp() - spell.getManaCost());
-        System.out.println("You dealt: " + totalDamage + " damage");
-        int result = enemy.getHp() - totalDamage;
-        if (result <= 0) {
-            enemy.setHp(result);
-            System.out.println("You killed the beast!\n");
-            character.setExperience(character.getExperience() + enemy.getExperience());
-            character.levelUpSystem();
+        if (character.getMp() > spell.getManaCost()){
+            System.out.println("------------------------------Combat-------------------------------\n");
+            Delays.timeDelay(1000);
+            Magic.useSpell(character, spell, spell.getManaCost());
+            int totalDamage = (character.getMagicalMight() + spell.getDamage() + Dice.DiceFunction(faces));
+            System.out.println("You dealt: " + totalDamage + " damage");
+            int result = enemy.getHp() - totalDamage;
+            if (result <= 0) {
+                enemy.setHp(result);
+                System.out.println("You killed the beast!\n");
+                character.setExperience(character.getExperience() + enemy.getExperience());
+                character.levelUpSystem();
 
-        } else {
-            System.out.println(enemy.getCreatureClass().getType() + " has " + result + " health left");
-            enemy.setHp(result);
+            } else {
+                System.out.println(enemy.getCreatureClass().getType() + " has " + result + " health left");
+                enemy.setHp(result);
+            }
         }
+        else {
+            System.out.println("You don't have enough mana");
+        }
+
     }
 
 
@@ -55,16 +62,22 @@ public class Combat {
         System.out.println("------------------------------Combat-------------------------------\n");
         Delays.timeDelay(1000);
         int totalDamage = (enemy.getStrength() - (character.getDefense() + Dice.DiceFunction(faces)));
-        int result = character.getHp() - totalDamage;
-        character.setHp(result);
-        System.out.println("You only received : " + totalDamage + " damage");
-        if (character.getHp() >= 0){
-            System.out.println("Your current health is: " + character.getHp());
+        if(totalDamage > 0){
+            int result = character.getHp() - totalDamage;
+            character.setHp(result);
+            System.out.println("You only received : " + totalDamage + " damage");
+            if (character.getHp() >= 0){
+                System.out.println("Your current health is: " + character.getHp());
+            }
+            else if (character.getHp() < 0){
+                System.out.println("Your current health is: 0");
+            }
+            System.out.println("\n");
         }
-        else if (character.getHp() < 0){
-            System.out.println("Your current health is: 0");
+        else{
+            System.out.println("You received no damage");
         }
-        System.out.println("\n");
+
     }
 
 
@@ -87,7 +100,7 @@ public class Combat {
     }
 
 
-    public static void Encounter(Creature enemy, Player character, Spells spell) {
+    public static void Encounter(Creature enemy, Player character) {
         System.out.println("-------------------------New Encounter------------------------------------\n");
         Delays.timeDelay(1000);
         System.out.println("You have encountered: " + enemy.getCreatureClass().getType());

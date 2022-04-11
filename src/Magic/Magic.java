@@ -12,7 +12,7 @@ public class Magic {
         }
     }
 
-    public void useSpell(Player character, Spells spell, int manaCost) {
+    public static void useSpell(Player character, Spells spell, int manaCost) {
         if (!character.getSpells().contains(spell.toString())) {
             System.out.println("You don't have that spell yet");
         } else {
