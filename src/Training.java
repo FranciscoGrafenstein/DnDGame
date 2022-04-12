@@ -17,11 +17,10 @@ public class Training {
         Items.addItemBag(character, ItemList.HP_POTY, 2);
         Items.addItemBag(character, ItemList.MP_POTY, 1);
 
-        while (!character.isDead()){
+        while (!character.isDead()) {
             Combat.Encounter(Creature.creatureSpawner(20), character);
         }
-
-        if (character.isDead()){
+        if (character.isDead()) {
             Visuals.youDied();
         }
 

@@ -10,8 +10,7 @@ public enum PlayerChoice {
     GO_BACK("Go back"),
     PICK_UP("Pick up item"),
     DROP("Drop item"),
-
-    ;
+    INVALID("Invalid Option");
 
     PlayerChoice(String choice) {
     }

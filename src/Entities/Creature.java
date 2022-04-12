@@ -1,4 +1,5 @@
 package Entities;
+
 import Utilities.Dice;
 
 public class Creature extends Player {
@@ -30,7 +31,7 @@ public class Creature extends Player {
     }
 
 
-    public static Creature creatureSpawner(int faces){
+    public static Creature creatureSpawner(int faces) {
         int experienceDice = Dice.DiceFunction(faces);
         Levels lvlDice = Levels.getRndLvl(Dice.DiceFunction(10));
         int hpDice = Dice.DiceFunction(faces);

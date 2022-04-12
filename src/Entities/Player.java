@@ -187,7 +187,7 @@ public class Player {
 
     }
 
-    public void levelUpSystem(){
+    public void levelUpSystem() {
         if (this.getExperience() > (Levels.getNextLvl(this.getLevel()).getExpNeeded())) {
             Delays.timeDelay(1000);
             this.setLevel(Levels.getNextLvl(this.getLevel()));

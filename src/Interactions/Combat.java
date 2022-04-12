@@ -6,8 +6,10 @@ import Magic.Magic;
 import Magic.Spells;
 import Utilities.Delays;
 import Utilities.Dice;
+
 import java.util.Objects;
 import java.util.Scanner;
+
 import static Magic.Spells.*;
 
 public class Combat {
@@ -32,7 +34,7 @@ public class Combat {
     }
 
     public static void PlayerMagicAttack(Player character, Creature enemy, Spells spell, int faces) {
-        if (character.getMp() > spell.getManaCost()){
+        if (character.getMp() > spell.getManaCost()) {
             System.out.println("------------------------------Combat-------------------------------\n");
             Delays.timeDelay(1000);
             Magic.useSpell(character, spell, spell.getManaCost());
@@ -49,32 +51,28 @@ public class Combat {
                 System.out.println(enemy.getCreatureClass().getType() + " has " + result + " health left");
                 enemy.setHp(result);
             }
-        }
-        else {
+        } else {
             System.out.println("You don't have enough mana");
         }
 
     }
 
 
-
     public static void PlayerDefense(Player character, Creature enemy, int faces) {
         System.out.println("------------------------------Combat-------------------------------\n");
         Delays.timeDelay(1000);
         int totalDamage = (enemy.getStrength() - (character.getDefense() + Dice.DiceFunction(faces)));
-        if(totalDamage > 0){
+        if (totalDamage > 0) {
             int result = character.getHp() - totalDamage;
             character.setHp(result);
             System.out.println("You only received : " + totalDamage + " damage");
-            if (character.getHp() >= 0){
+            if (character.getHp() >= 0) {
                 System.out.println("Your current health is: " + character.getHp());
-            }
-            else if (character.getHp() < 0){
+            } else if (character.getHp() < 0) {
                 System.out.println("Your current health is: 0");
             }
             System.out.println("\n");
-        }
-        else{
+        } else {
             System.out.println("You received no damage");
         }
 
@@ -115,32 +113,34 @@ public class Combat {
                     System.out.println(" 1- Physical Attack 2- Magical Attack");
                     Scanner in2 = new Scanner(System.in);
                     String playerChoice2 = in2.nextLine();
-                    if(Objects.equals(Integer.parseInt(playerChoice2), 1)) {
+                    if (Objects.equals(Integer.parseInt(playerChoice2), 1)) {
                         Combat.PlayerAttack(character, enemy, 12);
                         if (enemy.getHp() > 0) {
                             Combat.EnemyAttack(character, enemy, 20);
                         }
                         break;
                     }
-                    if(Objects.equals(Integer.parseInt(playerChoice2), 2)) {
+                    if (Objects.equals(Integer.parseInt(playerChoice2), 2)) {
                         System.out.println("Choose your spell");
                         System.out.println(character.getSpells());
                         Scanner in3 = new Scanner(System.in);
                         String playerChoice3 = in3.nextLine();
-                        if (Objects.equals(Integer.parseInt(playerChoice3), 1)){
+                        if (Objects.equals(Integer.parseInt(playerChoice3), 1)) {
                             Combat.PlayerMagicAttack(character, enemy, FIRE_BALL, 20);
                             if (enemy.getHp() > 0) {
                                 Combat.EnemyAttack(character, enemy, 20);
                             }
                         }
-                        if (Objects.equals(Integer.parseInt(playerChoice3), 2)){
+                        if (Objects.equals(Integer.parseInt(playerChoice3), 2)) {
                             Combat.PlayerMagicAttack(character, enemy, ICE_BALL, 20);
                             if (enemy.getHp() > 0) {
                                 Combat.EnemyAttack(character, enemy, 20);
                             }
                         }
-                        break;
+                    } else {
+                        System.out.println("You didn't select a valid option");
                     }
+                    break;
 
                 case DEFEND:
                     Combat.PlayerDefense(character, enemy, 20);
@@ -183,6 +183,8 @@ public class Combat {
                                         System.out.println("You don't have any mana potions");
                                     }
 
+                                } else {
+                                    System.out.println("You didn't select a valid option");
                                 }
                                 break;
                             }
@@ -191,6 +193,9 @@ public class Combat {
                             break;
 
                     }
+                case INVALID:
+                    System.out.println("You didn't select a valid option");
+                    break;
             }
         }
     }

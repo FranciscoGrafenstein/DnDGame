@@ -15,7 +15,7 @@ public enum ItemList {
 
     @Override
     public String toString() {
-        return  itemName;
+        return itemName;
     }
 
     public String getItemName() {

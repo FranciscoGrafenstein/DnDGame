@@ -37,27 +37,27 @@ public enum Creatures {
     public static Creatures getRandomCreature(int index) {
         Creatures randomCreature = null;
 
-        if (index == 1){
+        if (index == 1) {
             randomCreature = OGRE;
         }
-        if (index == 2){
+        if (index == 2) {
             randomCreature = ZOMBIE;
         }
-        if (index == 3){
+        if (index == 3) {
             randomCreature = TROLL;
         }
-        if (index == 4){
+        if (index == 4) {
             randomCreature = DRAUGR;
         }
-        if (index == 5){
+        if (index == 5) {
             randomCreature = WEREWOLF;
         }
-        if (index == 6){
+        if (index == 6) {
             randomCreature = VAMPIRE;
         }
-        if (index == 7){
+        if (index == 7) {
             randomCreature = DRAGON;
         }
-        return  randomCreature;
+        return randomCreature;
     }
 }

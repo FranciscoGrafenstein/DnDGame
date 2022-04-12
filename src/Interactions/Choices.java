@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Choices {
 
     public static PlayerChoice choice() {
-        PlayerChoice choice = null;
+        PlayerChoice choice;
         System.out.println("What is your action?: " +
                 "\t 1 Attack" +
                 "\t 2 Defend" +
@@ -20,18 +20,16 @@ public class Choices {
         String playerChoice = in.nextLine();
         if (Objects.equals(Integer.parseInt(playerChoice), 1)) {
             choice = PlayerChoice.ATTACK;
-        }
-        if (Objects.equals(Integer.parseInt(playerChoice), 2)) {
+        } else if (Objects.equals(Integer.parseInt(playerChoice), 2)) {
             choice = PlayerChoice.DEFEND;
-        }
-        if (Objects.equals(Integer.parseInt(playerChoice), 3)) {
+        } else if (Objects.equals(Integer.parseInt(playerChoice), 3)) {
             choice = PlayerChoice.ESCAPE;
-        }
-        if (Objects.equals(Integer.parseInt(playerChoice), 4)) {
-            choice = PlayerChoice.ITEMS;
-        }
-        if (Objects.equals(Integer.parseInt(playerChoice), 5)) {
+        } else if (Objects.equals(Integer.parseInt(playerChoice), 4)) {
             choice = PlayerChoice.STATS;
+        } else if (Objects.equals(Integer.parseInt(playerChoice), 5)) {
+            choice = PlayerChoice.STATS;
+        } else {
+            choice = PlayerChoice.INVALID;
         }
         return choice;
     }
@@ -53,7 +51,6 @@ public class Choices {
         }
         return bagChoice;
     }
-
 
 
 }

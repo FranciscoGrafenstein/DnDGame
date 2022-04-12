@@ -19,7 +19,7 @@ public enum Spells {
 
     @Override
     public String toString() {
-        return  spellName;
+        return spellName;
     }
 
     public static Spells getSpellName() {

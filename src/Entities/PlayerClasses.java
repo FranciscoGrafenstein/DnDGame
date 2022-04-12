@@ -15,7 +15,6 @@ public enum PlayerClasses {
     private final int magicalMight;
 
 
-
     PlayerClasses(String type, int hp, int strength, int defense, int magicalMight, int mp) {
         this.type = type;
         this.hp = hp;

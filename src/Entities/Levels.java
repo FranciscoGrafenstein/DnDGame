@@ -34,71 +34,71 @@ public enum Levels {
 
         Levels nxtLvl = null;
 
-        if (nxt == 2){
-             nxtLvl = LEVEL_2;
+        if (nxt == 2) {
+            nxtLvl = LEVEL_2;
         }
-        if (nxt == 3){
-             nxtLvl = LEVEL_3;
+        if (nxt == 3) {
+            nxtLvl = LEVEL_3;
         }
-        if (nxt == 4){
-             nxtLvl = LEVEL_4;
+        if (nxt == 4) {
+            nxtLvl = LEVEL_4;
         }
-        if (nxt == 5){
-             nxtLvl = LEVEL_5;
+        if (nxt == 5) {
+            nxtLvl = LEVEL_5;
         }
-        if (nxt == 6){
-             nxtLvl = LEVEL_6;
+        if (nxt == 6) {
+            nxtLvl = LEVEL_6;
         }
-        if (nxt == 7){
-             nxtLvl = LEVEL_7;
+        if (nxt == 7) {
+            nxtLvl = LEVEL_7;
         }
-        if (nxt == 8){
-             nxtLvl = LEVEL_8;
+        if (nxt == 8) {
+            nxtLvl = LEVEL_8;
         }
-        if (nxt == 9){
-             nxtLvl = LEVEL_9;
+        if (nxt == 9) {
+            nxtLvl = LEVEL_9;
         }
-        if (nxt == 10){
-             nxtLvl = LEVEL_10;
+        if (nxt == 10) {
+            nxtLvl = LEVEL_10;
         }
 
-        return  nxtLvl;
+        return nxtLvl;
     }
 
     public static Levels getRndLvl(int randomLvl) {
         Levels nxtLvl = null;
 
-        if (randomLvl == 1){
+        if (randomLvl == 1) {
             nxtLvl = LEVEL_1;
         }
-        if (randomLvl == 2){
+        if (randomLvl == 2) {
             nxtLvl = LEVEL_2;
         }
-        if (randomLvl == 3){
+        if (randomLvl == 3) {
             nxtLvl = LEVEL_3;
         }
-        if (randomLvl == 4){
+        if (randomLvl == 4) {
             nxtLvl = LEVEL_4;
         }
-        if (randomLvl == 5){
+        if (randomLvl == 5) {
             nxtLvl = LEVEL_5;
         }
-        if (randomLvl == 6){
+        if (randomLvl == 6) {
             nxtLvl = LEVEL_6;
         }
-        if (randomLvl == 7){
+        if (randomLvl == 7) {
             nxtLvl = LEVEL_7;
         }
-        if (randomLvl == 8){
+        if (randomLvl == 8) {
             nxtLvl = LEVEL_8;
         }
-        if (randomLvl == 9){
+        if (randomLvl == 9) {
             nxtLvl = LEVEL_9;
         }
-        if (randomLvl == 10){
+        if (randomLvl == 10) {
             nxtLvl = LEVEL_10;
         }
 
-        return  nxtLvl;
+        return nxtLvl;
     }
 }
