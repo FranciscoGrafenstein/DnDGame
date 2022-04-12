@@ -10,7 +10,7 @@ public class Training {
 
     public static void main(String[] args) throws IOException {
 
-        Player character = new Player("Pancho", PlayerClasses.MAGE);
+        Player character = new Player("Pancho", PlayerClasses.MAGE, Races.HALF_ELF);
         character.characterCreationSystem();
         Magic.addSpell(character, Spells.FIRE_BALL);
         Magic.addSpell(character, Spells.ICE_BALL);

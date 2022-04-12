@@ -1,23 +1,33 @@
 package Entities;
 
 public enum Levels {
-    LEVEL_1("1", 10),
-    LEVEL_2("2", 22),
-    LEVEL_3("3", 33),
-    LEVEL_4("4", 44),
-    LEVEL_5("5", 55),
-    LEVEL_6("6", 66),
-    LEVEL_7("7", 77),
-    LEVEL_8("8", 88),
-    LEVEL_9("9", 99),
-    LEVEL_10("10", 110),
+    LEVEL_1("1", 10, 10, 10, 5, 1, 4),
+    LEVEL_2("2", 22, 12, 10, 6, 1, 4),
+    LEVEL_3("3", 33, 16, 14, 7, 1, 4),
+    LEVEL_4("4", 44, 18, 16, 8, 1, 5),
+    LEVEL_5("5", 55, 20, 18, 9, 1, 5),
+    LEVEL_6("6", 66, 24, 20, 10, 2, 5),
+    LEVEL_7("7", 77, 26, 22, 11, 2, 5),
+    LEVEL_8("8", 88, 28, 24, 12, 2, 6),
+    LEVEL_9("9", 99, 30, 26, 13, 2, 6),
+    LEVEL_10("10", 110, 35, 28, 14, 3, 7),
     ;
     private final String lvlName;
     private final int expNeeded;
+    private final int hp;
+    private final int mp;
+    private final int strength;
+    private final int defense;
+    private final int magicalMight;
 
-    Levels(String lvlName, int expNeeded) {
+    Levels(String lvlName, int expNeeded, int hp, int mp, int strength, int defense, int magicalMight) {
         this.lvlName = lvlName;
         this.expNeeded = expNeeded;
+        this.hp = hp;
+        this.mp = mp;
+        this.strength = strength;
+        this.defense = defense;
+        this.magicalMight = magicalMight;
     }
 
     public String getLvlName() {
@@ -26,6 +36,26 @@ public enum Levels {
 
     public int getExpNeeded() {
         return expNeeded;
+    }
+
+    public int getHp() {
+        return hp;
+    }
+
+    public int getMp() {
+        return mp;
+    }
+
+    public int getStrength() {
+        return strength;
+    }
+
+    public int getDefense() {
+        return defense;
+    }
+
+    public int getMagicalMight() {
+        return magicalMight;
     }
 
     public static Levels getNextLvl(Levels currentLvl) {

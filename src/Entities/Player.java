@@ -17,21 +17,28 @@ public class Player {
     private int strength;
     private int defense;
     private int magicalMight;
+    private Races race;
 
     static Map<ItemList, Integer> itemBag = new HashMap<>();
     static List<String> spells = new ArrayList<>();
 
-    public Player(String name, PlayerClasses playerClass) {
+    public Player(String name, PlayerClasses playerClass, Races race) {
         this.name = name;
         this.playerClass = playerClass;
+        this.race = race;
         this.experience = 0;
         this.level = Levels.LEVEL_1;
         this.gold = 0;
         this.hp = 100 + this.getPlayerClass().getHp();
+        this.hp = this.getHp() + this.getRace().getHp();
         this.mp = 80 + this.getPlayerClass().getMP();
+        this.mp = this.getMp() + this.getRace().getMp();
         this.strength = 15 + this.getPlayerClass().getStrength();
+        this.strength = this.getStrength() + this.getRace().getStrength();
         this.defense = 2 + this.getPlayerClass().getDefense();
+        this.defense = this.getDefense() + this.getRace().getDefense();
         this.magicalMight = 15 + this.getPlayerClass().getMagicalMight();
+        this.magicalMight = this.getMagicalMight() + this.getRace().getMagicalMight();
     }
 
     public Player(int experience, Levels level, int hp, int mp, int strength) {
@@ -139,6 +146,13 @@ public class Player {
         this.magicalMight = magicalMight;
     }
 
+    public Races getRace() {
+        return race;
+    }
+
+    public void setRace(Races race) {
+        this.race = race;
+    }
 // ------------------------------------------End of Getters and Setters-----------------------------------------
 
     public void characterCreationSystem() {
@@ -148,6 +162,7 @@ public class Player {
         System.out.println("|----------------------------------------------------------|");
         System.out.println("|-----------------------" + "Name: " + name + "-----------------------|");
         System.out.println("|-----------------------" + "Class: " + getPlayerClass().getType() + "---------------------|");
+        System.out.println("|-----------------------" + "Race: " + this.getRace().getName() + "-----------------------|");
         System.out.println("|-----------------------" + "Level: " + this.getLevel().getLvlName() + "---------------------------|");
         System.out.println("|-----------------------" + "Experience: " + this.getExperience() + "----------------------|");
         System.out.println("|-----------------------" + "Life Points: " + hp + "--------------------|");
@@ -165,26 +180,23 @@ public class Player {
         System.out.println("|----------------------- New Level ------------------------|");
         System.out.println("|----------------------------------------------------------|");
         System.out.println("|----------------------------------------------------------|");
-        System.out.println("|-----------------------" + "Name: " + name + "-----------------------|");
-        System.out.println("|-----------------------" + "Class: " + getPlayerClass().getType() + "---------------------|");
         System.out.println("|-----------------------" + "Level: " + this.getLevel().getLvlName() + "---------------------------|");
         System.out.println("|-----------------------" + "Experience: " + experience + "---------------------|");
-        System.out.println("|-----------------------" + "Life Points: " + hp + "--------------------|");
-        System.out.println("|-----------------------" + "Strength: " + strength + "-----------------------|");
-        System.out.println("|-----------------------" + "Mana: " + mp + "--------------------------|");
-        System.out.println("|-----------------------" + "Magic Might: " + magicalMight + "--------------------|");
-        System.out.println("|-----------------------" + "Gold: " + gold + "----------------------------|");
+        System.out.println("|-----------------------" + "Life Points: +" + this.getLevel().getHp() + "--------------------|");
+        System.out.println("|-----------------------" + "Strength: +" + this.getLevel().getStrength() + "-----------------------|");
+        System.out.println("|-----------------------" + "Mana: +" + this.getLevel().getMp() + "--------------------------|");
+        System.out.println("|-----------------------" + "Magic Might: +" + this.getLevel().getMagicalMight() + "--------------------|");
         System.out.println("|-----------" + "Experience needed to level up: " + Levels.getNextLvl(this.getLevel()).getExpNeeded() + "--------------|");
         System.out.println("|----------------------------------------------------------|");
         System.out.println("|----------------------------------------------------------|");
     }
 
     public void levelUp() {
-        this.setHp(this.getHp() + 10);
-        this.setStrength(this.getStrength() + 15);
-        this.setMp(this.getHp() + 10);
-        this.setGold(this.getGold() + 5);
-
+        this.setHp(this.getHp() + this.getLevel().getHp());
+        this.setStrength(this.getStrength() + this.getLevel().getStrength());
+        this.setMp(this.getMp() + this.getLevel().getMp());
+        this.setDefense(this.getDefense() + this.getLevel().getDefense());
+        this.setMagicalMight(this.getMagicalMight() + this.getLevel().getMagicalMight());
     }
 
     public void levelUpSystem() {

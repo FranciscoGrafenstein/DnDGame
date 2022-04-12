@@ -25,7 +25,7 @@ public class Choices {
         } else if (Objects.equals(Integer.parseInt(playerChoice), 3)) {
             choice = PlayerChoice.ESCAPE;
         } else if (Objects.equals(Integer.parseInt(playerChoice), 4)) {
-            choice = PlayerChoice.STATS;
+            choice = PlayerChoice.ITEMS;
         } else if (Objects.equals(Integer.parseInt(playerChoice), 5)) {
             choice = PlayerChoice.STATS;
         } else {
