@@ -10,8 +10,9 @@ public class Creature extends Player {
     private CreatureLevels level;
 
 
-    public Creature(Creatures creatureClass, int experience, Levels level, int hp, int mp, int strength, int gold) {
-        super(experience, level, hp, mp, strength, gold);
+    public Creature(Creatures creatureClass, int experience, Levels level, int hp, int mp,
+                    int strength, int gold, int escapeChance) {
+        super(experience, level, hp, mp, strength, gold, escapeChance);
         this.creatureClass = creatureClass;
         this.setHp(hp + this.getCreatureClass().getHp());
         this.setStrength(strength + this.getCreatureClass().getStrength());
@@ -40,6 +41,10 @@ public class Creature extends Player {
         return this.getHp() <= 0;
     }
 
+    public int setIsDead(){
+        return this.setHp(0);
+    }
+
 
     public static Creature creatureSpawner(int faces, Player character) {
         // Level Randomizer
@@ -59,9 +64,10 @@ public class Creature extends Player {
         int mpDice = Dice.DiceFunction(faces);
         int strengthDice = Dice.DiceFunction(faces);
         int goldDice = (Dice.DiceFunction(faces) + 10);
+        int escapeDice = Dice.DiceFunction(faces);
         int randomCreature = Dice.DiceFunction(6);
         return new Creature(Creatures.getRandomCreature(randomCreature), experienceDice, lvlDice,
-                hpDice, mpDice, strengthDice, goldDice);
+                hpDice, mpDice, strengthDice, goldDice, escapeDice);
     }
 
     public static Creature creatureLeveler(Creature enemy){

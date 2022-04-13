@@ -109,6 +109,23 @@ public class Combat {
         }
     }
 
+    public static void EscapeChance(Player character, Creature enemy, int faces) {
+        System.out.println("---------------------------------Escape---------------------------------\n");
+        int playerEscape = character.setEscapeChance(Dice.DiceFunction(faces));
+        if (playerEscape > enemy.getEscapeChance()) {
+            System.out.println("You escaped!");
+            System.out.println("You rolled: " + playerEscape);
+            System.out.println("Required escape: " + enemy.getEscapeChance());
+            enemy.setIsDead();
+        }
+        else{
+            System.out.println("Escape failed");
+            System.out.println("You rolled: " + playerEscape);
+            System.out.println("Required escape: " + enemy.getEscapeChance());
+            Combat.EnemyAttack(character, enemy, faces);
+        }
+    }
+
 
     public static void Encounter(Creature enemy, Player character) {
         System.out.println("-------------------------New Encounter------------------------------------\n");
@@ -160,6 +177,7 @@ public class Combat {
                     break;
 
                 case ESCAPE:
+                    Combat.EscapeChance(character, enemy, 20);
                     break;
 
                 case STATS:

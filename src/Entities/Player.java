@@ -18,6 +18,7 @@ public class Player {
     private int defense;
     private int magicalMight;
     private Races race;
+    private int escapeChance;
 
     static Map<ItemList, Integer> itemBag = new HashMap<>();
     static List<String> spells = new ArrayList<>();
@@ -39,15 +40,17 @@ public class Player {
         this.defense = this.getDefense() + this.getRace().getDefense();
         this.magicalMight = 15 + this.getPlayerClass().getMagicalMight();
         this.magicalMight = this.getMagicalMight() + this.getRace().getMagicalMight();
+        this.escapeChance = 0;
     }
 
-    public Player(int experience, Levels level, int hp, int mp, int strength, int gold) {
+    public Player(int experience, Levels level, int hp, int mp, int strength, int gold, int escapeChance) {
         this.experience = experience;
         this.level = level;
         this.hp = hp;
         this.mp = mp;
         this.strength = strength;
         this.gold = gold;
+        this.escapeChance = escapeChance;
     }
     // ---------------------------------------------Getters and Setters-----------------------------------------
 
@@ -73,6 +76,15 @@ public class Player {
 
     public void setDefense(int defense) {
         this.defense = defense;
+    }
+
+    public int getEscapeChance() {
+        return escapeChance;
+    }
+
+    public int setEscapeChance(int escapeChance) {
+        this.escapeChance = escapeChance;
+        return escapeChance;
     }
 
     public String getName() {
@@ -119,8 +131,9 @@ public class Player {
         this.gold = gold;
     }
 
-    public void setHp(int hp) {
+    public int setHp(int hp) {
         this.hp = hp;
+        return hp;
     }
 
     public int getMp() {
