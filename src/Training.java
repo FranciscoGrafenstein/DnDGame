@@ -18,7 +18,7 @@ public class Training {
         Items.addItemBag(character, ItemList.MP_POTY, 1);
 
         while (!character.isDead()) {
-            Combat.Encounter(Creature.creatureSpawner(20), character);
+            Combat.Encounter(Creature.creatureLeveler(Creature.creatureSpawner(20, character)), character);
         }
         if (character.isDead()) {
             Visuals.youDied();

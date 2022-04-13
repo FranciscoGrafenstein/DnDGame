@@ -1,16 +1,16 @@
 package Entities;
 
-public enum Levels {
-    LEVEL_1("1", 10, 10, 10, 5, 1, 4),
-    LEVEL_2("2", 25, 12, 10, 6, 1, 4),
-    LEVEL_3("3", 50, 16, 14, 7, 1, 4),
-    LEVEL_4("4", 78, 18, 16, 8, 1, 5),
-    LEVEL_5("5", 91, 20, 18, 9, 1, 5),
-    LEVEL_6("6", 140, 24, 20, 10, 2, 5),
-    LEVEL_7("7", 180, 26, 22, 11, 2, 5),
-    LEVEL_8("8", 220, 28, 24, 12, 2, 6),
-    LEVEL_9("9", 280, 30, 26, 13, 2, 6),
-    LEVEL_10("10", 350, 35, 28, 14, 3, 7),
+public enum CreatureLevels {
+    LEVEL_1("1", 10, 5, 5, 2, 1, 4),
+    LEVEL_2("2", 22, 6, 10, 4, 1, 4),
+    LEVEL_3("3", 33, 7, 14, 5, 1, 4),
+    LEVEL_4("4", 44, 8, 16, 6, 1, 5),
+    LEVEL_5("5", 55, 9, 18, 7, 1, 5),
+    LEVEL_6("6", 66, 10, 20, 8, 2, 5),
+    LEVEL_7("7", 77, 12, 22, 9, 2, 5),
+    LEVEL_8("8", 88, 14, 24, 10, 2, 6),
+    LEVEL_9("9", 99, 16, 26, 12, 2, 6),
+    LEVEL_10("10", 110, 18, 28, 14, 3, 7),
     ;
     private final String lvlName;
     private final int expNeeded;
@@ -20,7 +20,7 @@ public enum Levels {
     private final int defense;
     private final int magicalMight;
 
-    Levels(String lvlName, int expNeeded, int hp, int mp, int strength, int defense, int magicalMight) {
+    CreatureLevels(String lvlName, int expNeeded, int hp, int mp, int strength, int defense, int magicalMight) {
         this.lvlName = lvlName;
         this.expNeeded = expNeeded;
         this.hp = hp;
@@ -58,11 +58,11 @@ public enum Levels {
         return magicalMight;
     }
 
-    public static Levels getNextLvl(Levels currentLvl) {
+    public static CreatureLevels getNextLvl(CreatureLevels currentLvl) {
         int current = Integer.parseInt(currentLvl.getLvlName());
         int nxt = current + 1;
 
-        Levels nxtLvl = null;
+        CreatureLevels nxtLvl = null;
 
         if (nxt == 2) {
             nxtLvl = LEVEL_2;
@@ -95,8 +95,8 @@ public enum Levels {
         return nxtLvl;
     }
 
-    public static Levels getRndLvl(int randomLvl) {
-        Levels nxtLvl = null;
+    public static CreatureLevels getRndLvl(int randomLvl) {
+        CreatureLevels nxtLvl = null;
 
         if (randomLvl == 1) {
             nxtLvl = LEVEL_1;

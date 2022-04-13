@@ -25,8 +25,12 @@ public class Combat {
         if (result <= 0) {
             enemy.setHp(result);
             System.out.println("You killed the beast!\n");
+            System.out.println("Experience gained: " + enemy.getExperience());
             character.setExperience(character.getExperience() + enemy.getExperience());
             character.levelUpSystem();
+            if (character.expEnough()){
+                character.levelUpSystem();
+            }
         } else {
             System.out.println(enemy.getCreatureClass().getType() + " has " + result + " health left");
             enemy.setHp(result);
@@ -44,8 +48,12 @@ public class Combat {
             if (result <= 0) {
                 enemy.setHp(result);
                 System.out.println("You killed the beast!\n");
+                System.out.println("Experience gained: " + enemy.getExperience());
                 character.setExperience(character.getExperience() + enemy.getExperience());
                 character.levelUpSystem();
+                if (character.expEnough()){
+                    character.levelUpSystem();
+                }
 
             } else {
                 System.out.println(enemy.getCreatureClass().getType() + " has " + result + " health left");
@@ -137,9 +145,9 @@ public class Combat {
                                 Combat.EnemyAttack(character, enemy, 20);
                             }
                         }
-                    } else {
-                        System.out.println("You didn't select a valid option");
-                    }
+                    }   else {
+                            System.out.println("You didn't select a valid option");
+                        }
                     break;
 
                 case DEFEND:
@@ -174,7 +182,7 @@ public class Combat {
                                     }
 
                                 }
-                                if (Objects.equals(Integer.parseInt(playerChoice), 2)) {
+                                else if (Objects.equals(Integer.parseInt(playerChoice), 2)) {
                                     if (character.getItemBag().containsKey(ItemList.MP_POTY)) {
                                         Items.useItemBag(character, ItemList.MP_POTY, 1);
                                         character.setMp(character.getMp() + ItemList.MP_POTY.getRestore());
@@ -183,7 +191,8 @@ public class Combat {
                                         System.out.println("You don't have any mana potions");
                                     }
 
-                                } else {
+                                }
+                                else {
                                     System.out.println("You didn't select a valid option");
                                 }
                                 break;
@@ -193,9 +202,6 @@ public class Combat {
                             break;
 
                     }
-                case INVALID:
-                    System.out.println("You didn't select a valid option");
-                    break;
             }
         }
     }

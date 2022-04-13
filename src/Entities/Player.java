@@ -209,4 +209,8 @@ public class Player {
         }
     }
 
+    public boolean expEnough(){
+        return this.getExperience() > (Levels.getNextLvl(this.getLevel()).getExpNeeded());
+    }
+
 }
