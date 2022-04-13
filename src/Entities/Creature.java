@@ -10,8 +10,8 @@ public class Creature extends Player {
     private CreatureLevels level;
 
 
-    public Creature(Creatures creatureClass, int experience, Levels level, int hp, int mp, int strength) {
-        super(experience, level, hp, mp, strength);
+    public Creature(Creatures creatureClass, int experience, Levels level, int hp, int mp, int strength, int gold) {
+        super(experience, level, hp, mp, strength, gold);
         this.creatureClass = creatureClass;
         this.setHp(hp + this.getCreatureClass().getHp());
         this.setStrength(strength + this.getCreatureClass().getStrength());
@@ -58,9 +58,10 @@ public class Creature extends Player {
         int hpDice = Dice.DiceFunction(faces);
         int mpDice = Dice.DiceFunction(faces);
         int strengthDice = Dice.DiceFunction(faces);
+        int goldDice = (Dice.DiceFunction(faces) + 10);
         int randomCreature = Dice.DiceFunction(6);
         return new Creature(Creatures.getRandomCreature(randomCreature), experienceDice, lvlDice,
-                hpDice, mpDice, strengthDice);
+                hpDice, mpDice, strengthDice, goldDice);
     }
 
     public static Creature creatureLeveler(Creature enemy){

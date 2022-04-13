@@ -41,12 +41,13 @@ public class Player {
         this.magicalMight = this.getMagicalMight() + this.getRace().getMagicalMight();
     }
 
-    public Player(int experience, Levels level, int hp, int mp, int strength) {
+    public Player(int experience, Levels level, int hp, int mp, int strength, int gold) {
         this.experience = experience;
         this.level = level;
         this.hp = hp;
         this.mp = mp;
         this.strength = strength;
+        this.gold = gold;
     }
     // ---------------------------------------------Getters and Setters-----------------------------------------
 

@@ -26,6 +26,8 @@ public class Combat {
             enemy.setHp(result);
             System.out.println("You killed the beast!\n");
             System.out.println("Experience gained: " + enemy.getExperience());
+            System.out.println("Gold gained: " + enemy.getGold());
+            character.setGold(character.getGold() + enemy.getGold());
             character.setExperience(character.getExperience() + enemy.getExperience());
             character.levelUpSystem();
             if (character.expEnough()){
@@ -49,6 +51,8 @@ public class Combat {
                 enemy.setHp(result);
                 System.out.println("You killed the beast!\n");
                 System.out.println("Experience gained: " + enemy.getExperience());
+                System.out.println("Gold gained: " + enemy.getGold());
+                character.setGold(character.getGold() + enemy.getGold());
                 character.setExperience(character.getExperience() + enemy.getExperience());
                 character.levelUpSystem();
                 if (character.expEnough()){
