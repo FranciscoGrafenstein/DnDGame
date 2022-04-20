@@ -1,8 +1,9 @@
 package Entities;
 
 public enum Creatures {
-    OGRE("Ogre", 10, 10),
+    OGRE("Ogre", 15, 18),
     ZOMBIE("Zombie", 20, 9),
+    GOBLIN("Goblin", 10, 10),
     TROLL("Troll", 40, 30),
     DRAUGR("Draugr", 25, 12),
     VAMPIRE("Vampire", 50, 30),
@@ -44,18 +45,21 @@ public enum Creatures {
             randomCreature = ZOMBIE;
         }
         if (index == 3) {
-            randomCreature = TROLL;
+            randomCreature = GOBLIN;
         }
         if (index == 4) {
-            randomCreature = DRAUGR;
+            randomCreature = TROLL;
         }
         if (index == 5) {
-            randomCreature = WEREWOLF;
+            randomCreature = DRAUGR;
         }
         if (index == 6) {
-            randomCreature = VAMPIRE;
+            randomCreature = WEREWOLF;
         }
         if (index == 7) {
+            randomCreature = VAMPIRE;
+        }
+        if (index == 8) {
             randomCreature = DRAGON;
         }
         return randomCreature;

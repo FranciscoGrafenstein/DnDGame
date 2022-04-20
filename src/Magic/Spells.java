@@ -5,7 +5,6 @@ public enum Spells {
     ICE_BALL("Ice Ball", 5, 30),
     ;
 
-    private static Spells spellNames;
     private final String spellName;
     private final int damage;
     private final int manaCost;
@@ -20,10 +19,6 @@ public enum Spells {
     @Override
     public String toString() {
         return spellName;
-    }
-
-    public static Spells getSpellName() {
-        return spellNames;
     }
 
     public int getDamage() {

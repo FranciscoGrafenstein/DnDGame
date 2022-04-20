@@ -1,28 +1,28 @@
 package Entities;
 
 public enum CreatureLevels {
-    LEVEL_1("1", 10, 5, 5, 6, 1, 4),
-    LEVEL_2("2", 22, 10, 10, 8, 1, 4),
-    LEVEL_3("3", 33, 16, 14, 10, 1, 4),
-    LEVEL_4("4", 44, 18, 16, 12, 1, 5),
-    LEVEL_5("5", 55, 25, 18, 13, 1, 5),
-    LEVEL_6("6", 66, 32, 20, 14, 2, 5),
-    LEVEL_7("7", 77, 45, 22, 15, 2, 5),
-    LEVEL_8("8", 88, 50, 24, 16, 2, 6),
-    LEVEL_9("9", 99, 55, 26, 17, 2, 6),
-    LEVEL_10("10", 110, 70, 28, 18, 3, 7),
+    LEVEL_1("1", 5, 5, 5, 6, 1, 4),
+    LEVEL_2("2", 9, 10, 10, 8, 1, 4),
+    LEVEL_3("3", 13, 16, 14, 10, 1, 4),
+    LEVEL_4("4", 16, 18, 16, 12, 1, 5),
+    LEVEL_5("5", 20, 25, 18, 13, 1, 5),
+    LEVEL_6("6", 23, 32, 20, 14, 2, 5),
+    LEVEL_7("7", 26, 45, 22, 15, 2, 5),
+    LEVEL_8("8", 30, 50, 24, 16, 2, 6),
+    LEVEL_9("9", 34, 55, 26, 17, 2, 6),
+    LEVEL_10("10", 38, 70, 28, 18, 3, 7),
     ;
     private final String lvlName;
-    private final int expNeeded;
+    private final int experience;
     private final int hp;
     private final int mp;
     private final int strength;
     private final int defense;
     private final int magicalMight;
 
-    CreatureLevels(String lvlName, int expNeeded, int hp, int mp, int strength, int defense, int magicalMight) {
+    CreatureLevels(String lvlName, int experience, int hp, int mp, int strength, int defense, int magicalMight) {
         this.lvlName = lvlName;
-        this.expNeeded = expNeeded;
+        this.experience = experience;
         this.hp = hp;
         this.mp = mp;
         this.strength = strength;
@@ -34,8 +34,8 @@ public enum CreatureLevels {
         return lvlName;
     }
 
-    public int getExpNeeded() {
-        return expNeeded;
+    public int getExperience() {
+        return experience;
     }
 
     public int getHp() {
@@ -95,7 +95,7 @@ public enum CreatureLevels {
         return nxtLvl;
     }
 
-    public static CreatureLevels getRndLvl(int randomLvl) {
+    public static CreatureLevels getRndCreatureLvl(int randomLvl) {
         CreatureLevels nxtLvl = null;
 
         if (randomLvl == 1) {

@@ -3,10 +3,48 @@ package Interactions;
 import Entities.Player;
 import Entities.PlayerChoice;
 
+import java.util.InputMismatchException;
 import java.util.Objects;
 import java.util.Scanner;
 
 public class Choices {
+
+    public static int getUserInput() {
+        Scanner sc = new Scanner(System.in);
+        int number;
+        while (true) {
+            try {
+                number = sc.nextInt();
+                if (number <= 0) {
+                    throw new InputMismatchException();
+                }
+                break;
+            } catch (InputMismatchException e) {
+                System.out.println("Enter valid option! ");
+                sc.nextLine();
+            }
+        }
+        return number;
+    }
+
+    public static int getUserInput(String var) {
+        Scanner sc = new Scanner(System.in);
+        int number;
+        while (true) {
+            try {
+                number = sc.nextInt();
+                if (number <= 0) {
+                    throw new InputMismatchException();
+                }
+                break;
+            } catch (InputMismatchException e) {
+                System.out.println("Enter valid option! ");
+                System.out.print(var + ": ");
+                sc.nextLine();
+            }
+        }
+        return number;
+    }
 
     public static PlayerChoice choice() {
         PlayerChoice choice;
@@ -16,17 +54,22 @@ public class Choices {
                 "\t 3 Escape" +
                 "\t 4 Item Bag" +
                 "\t 5 Check Stats");
-        Scanner in = new Scanner(System.in);
-        String playerChoice = in.nextLine();
-        if (Objects.equals(Integer.parseInt(playerChoice), 1)) {
+        int playerChoice;
+        playerChoice = getUserInput("What is your action?: " +
+                "\t 1 Attack" +
+                "\t 2 Defend" +
+                "\t 3 Escape" +
+                "\t 4 Item Bag" +
+                "\t 5 Check Stats");
+        if (Objects.equals(playerChoice, 1)) {
             choice = PlayerChoice.ATTACK;
-        } else if (Objects.equals(Integer.parseInt(playerChoice), 2)) {
+        } else if (Objects.equals(playerChoice, 2)) {
             choice = PlayerChoice.DEFEND;
-        } else if (Objects.equals(Integer.parseInt(playerChoice), 3)) {
+        } else if (Objects.equals(playerChoice, 3)) {
             choice = PlayerChoice.ESCAPE;
-        } else if (Objects.equals(Integer.parseInt(playerChoice), 4)) {
+        } else if (Objects.equals(playerChoice, 4)) {
             choice = PlayerChoice.ITEMS;
-        } else if (Objects.equals(Integer.parseInt(playerChoice), 5)) {
+        } else if (Objects.equals(playerChoice, 5)) {
             choice = PlayerChoice.STATS;
         } else {
             choice = PlayerChoice.INVALID;
@@ -38,16 +81,20 @@ public class Choices {
         PlayerChoice bagChoice = null;
         System.out.println("Item bag: ");
         System.out.println(character.getItemBag());
-        System.out.println("What is your action?: " +
+        System.out.print("What is your action?: " +
                 "\t 1 Use item" +
-                "\t 2 Go back");
-        Scanner in = new Scanner(System.in);
-        String playerChoice = in.nextLine();
-        if (Objects.equals(Integer.parseInt(playerChoice), 1)) {
+                "\t 2 Drop item" +
+                "\t 3 Go back");
+        int playerChoice;
+        playerChoice = getUserInput();
+        if (Objects.equals(playerChoice, 1)) {
             bagChoice = PlayerChoice.USE_ITEM;
-        }
-        if (Objects.equals(Integer.parseInt(playerChoice), 2)) {
+        } else if (Objects.equals(playerChoice, 2)) {
+            bagChoice = PlayerChoice.DROP;
+        } else if (Objects.equals(playerChoice, 3)) {
             bagChoice = PlayerChoice.GO_BACK;
+        } else {
+            bagChoice = PlayerChoice.INVALID;
         }
         return bagChoice;
     }

@@ -1,5 +1,7 @@
 package Entities;
 
+import Items.ItemList;
+import Items.Items;
 import Utilities.Dice;
 
 import java.util.Random;
@@ -10,9 +12,10 @@ public class Creature extends Player {
     private CreatureLevels level;
 
 
-    public Creature(Creatures creatureClass, int experience, Levels level, int hp, int mp,
+    public Creature(Creatures creatureClass, int experience, CreatureLevels level, int hp, int mp,
                     int strength, int gold, int escapeChance) {
-        super(experience, level, hp, mp, strength, gold, escapeChance);
+        super(experience, hp, mp, strength, gold, escapeChance);
+        this.level = level;
         this.creatureClass = creatureClass;
         this.setHp(hp + this.getCreatureClass().getHp());
         this.setStrength(strength + this.getCreatureClass().getStrength());
@@ -45,7 +48,7 @@ public class Creature extends Player {
         return this.setHp(0);
     }
 
-
+    // Creates a new creature with random stats
     public static Creature creatureSpawner(int faces, Player character) {
         // Level Randomizer
         int playerLevel = Integer.parseInt(character.getLevel().getLvlName());
@@ -54,28 +57,53 @@ public class Creature extends Player {
         if (randomLevel <= 0){
             randomLevel = 1;
         }
+
         // Experience Randomizer
         Random randExp = new Random();
-        int randomExp = randExp.nextInt(20-8) + 8;
+        int randomExp = randExp.nextInt(10-5) + 5;
         int experienceDice = (Dice.DiceFunction(faces) + randomExp);
+
         // Rest of values
-        Levels lvlDice = Levels.getRndLvl(randomLevel);
+        CreatureLevels lvlDice = CreatureLevels.getRndCreatureLvl(randomLevel);
         int hpDice = Dice.DiceFunction(faces);
         int mpDice = Dice.DiceFunction(faces);
         int strengthDice = Dice.DiceFunction(faces);
         int goldDice = (Dice.DiceFunction(faces) + 10);
         int escapeDice = Dice.DiceFunction(faces);
-        int randomCreature = Dice.DiceFunction(6);
+        int randomCreature = Dice.DiceFunction(8);
         return new Creature(Creatures.getRandomCreature(randomCreature), experienceDice, lvlDice,
                 hpDice, mpDice, strengthDice, goldDice, escapeDice);
     }
 
-    public static Creature creatureLeveler(Creature enemy){
-        enemy.setHp(enemy.getHp() + enemy.getLevel().getHp());
-        enemy.setMp(enemy.getMp() + enemy.getLevel().getMp());
-        enemy.setStrength(enemy.getStrength() + enemy.getLevel().getStrength());
-        enemy.setMagicalMight(enemy.getMagicalMight() + enemy.getLevel().getMagicalMight());
-        return enemy;
+    // Takes the created creature with random stats, and based on the random level, it raises the stats
+    public static void creatureLeveler(Creature enemy){
+        enemy.setHp(enemy.getHp() + enemy.getCreatureLevel().getHp());
+        enemy.setMp(enemy.getMp() + enemy.getCreatureLevel().getMp());
+        enemy.setStrength(enemy.getStrength() + enemy.getCreatureLevel().getStrength());
+        enemy.setMagicalMight(enemy.getMagicalMight() + enemy.getCreatureLevel().getMagicalMight());
+        enemy.setExperience(enemy.getExperience() + enemy.getCreatureLevel().getExperience());
     }
 
+    // item dropper
+    public void creatureDrop(Creature enemy, Player character, ItemList item){
+        int dropChance = Dice.DiceFunction(100);
+        if (dropChance > 70){
+            Items.addItemBag(character, item, 1);
+            System.out.println(enemy.getCreatureClass().getType() + " dropped: " + item.getItemName());
+        }
+    }
+    public  void superDrop(Creature enemy, Player character, ItemList item){
+        int dropChance = Dice.DiceFunction(100);
+        if (dropChance > 95){
+            Items.addItemBag(character, item, 1);
+            System.out.println(enemy.getCreatureClass().getType() + " dropped: " + item.getItemName());
+        }
+    }
+
+    public void drop(Creature enemy, Player character){
+        enemy.creatureDrop(enemy, character, ItemList.MP_POTY);
+        enemy.creatureDrop(enemy, character, ItemList.HP_POTY);
+        enemy.superDrop(enemy, character, ItemList.MP_SUPER_POTY);
+        enemy.superDrop(enemy, character, ItemList.HP_SUPER_POTY);
+    }
 }

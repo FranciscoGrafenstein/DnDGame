@@ -18,6 +18,7 @@ public class Dice {
         return 1 + rand.nextInt(faces);
     }
 
+    // Method that waits for input to roll a die
     public static void DiceRoller() {
         Scanner input = new Scanner(System.in);
         System.out.println("Utilities.Dice Roller\n");
@@ -26,6 +27,7 @@ public class Dice {
         System.out.println("\nThe dice rolled a " + dice.roll() + ".");
     }
 
+    // Method that rolls a die without input
     public static int DiceFunction(int faces) {
         Dice dice = new Dice(faces);
         return dice.roll();

@@ -5,6 +5,7 @@ import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
+// Method that draws text
 public class Visuals {
     public static void youDied() throws IOException {
         int width = 130;

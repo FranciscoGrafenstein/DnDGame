@@ -23,6 +23,7 @@ public class Player {
     static Map<ItemList, Integer> itemBag = new HashMap<>();
     static List<String> spells = new ArrayList<>();
 
+    // Constructor with class and race fields
     public Player(String name, PlayerClasses playerClass, Races race) {
         this.name = name;
         this.playerClass = playerClass;
@@ -43,9 +44,9 @@ public class Player {
         this.escapeChance = 0;
     }
 
-    public Player(int experience, Levels level, int hp, int mp, int strength, int gold, int escapeChance) {
+    // Constructor used in Creature
+    public Player(int experience, int hp, int mp, int strength, int gold, int escapeChance) {
         this.experience = experience;
-        this.level = level;
         this.hp = hp;
         this.mp = mp;
         this.strength = strength;
@@ -169,7 +170,7 @@ public class Player {
     }
 // ------------------------------------------End of Getters and Setters-----------------------------------------
 
-    public void characterCreationSystem() {
+    public void playerStats() {
         System.out.println("|----------------------------------------------------------|");
         System.out.println("|----------------------- Character Page -------------------|");
         System.out.println("|----------------------------------------------------------|");
@@ -189,7 +190,7 @@ public class Player {
         System.out.println("|----------------------------------------------------------|");
     }
 
-    public void characterCreationSystemLeveling() {
+    public void playerNewLevelStats() {
         System.out.println("|----------------------------------------------------------|");
         System.out.println("|----------------------- New Level ------------------------|");
         System.out.println("|----------------------------------------------------------|");
@@ -205,6 +206,7 @@ public class Player {
         System.out.println("|----------------------------------------------------------|");
     }
 
+    // Raises character stats
     public void levelUp() {
         this.setHp(this.getHp() + this.getLevel().getHp());
         this.setStrength(this.getStrength() + this.getLevel().getStrength());
@@ -212,17 +214,17 @@ public class Player {
         this.setDefense(this.getDefense() + this.getLevel().getDefense());
         this.setMagicalMight(this.getMagicalMight() + this.getLevel().getMagicalMight());
     }
-
+    // Checks if character needs to level up
     public void levelUpSystem() {
         if (this.getExperience() > (Levels.getNextLvl(this.getLevel()).getExpNeeded())) {
             Delays.timeDelay(1000);
             this.setLevel(Levels.getNextLvl(this.getLevel()));
             System.out.println("You leveled up!\n");
             this.levelUp();
-            this.characterCreationSystemLeveling();
+            this.playerNewLevelStats();
         }
     }
-
+    // Double checker for level up
     public boolean expEnough(){
         return this.getExperience() > (Levels.getNextLvl(this.getLevel()).getExpNeeded());
     }

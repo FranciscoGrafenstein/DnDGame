@@ -3,6 +3,8 @@ package Items;
 public enum ItemList {
     HP_POTY("Health Potion", 15),
     MP_POTY("Mana Potion", 15),
+    HP_SUPER_POTY("Super Health Potion", 50),
+    MP_SUPER_POTY("Super Mana Potion", 50)
     ;
 
     private final String itemName;
