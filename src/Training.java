@@ -25,7 +25,6 @@ public class Training {
             Visuals.youDied();
         }
 
-
     //    Hola mi amor te amo <3
     }
 }
