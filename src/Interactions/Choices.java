@@ -53,14 +53,16 @@ public class Choices {
                 "\t 2 Defend" +
                 "\t 3 Escape" +
                 "\t 4 Item Bag" +
-                "\t 5 Check Stats");
+                "\t 5 Equipment" +
+                "\t 6 Check Stats");
         int playerChoice;
         playerChoice = getUserInput("What is your action?: " +
                 "\t 1 Attack" +
                 "\t 2 Defend" +
                 "\t 3 Escape" +
                 "\t 4 Item Bag" +
-                "\t 5 Check Stats");
+                "\t 5 Equipment" +
+                "\t 6 Check Stats");
         if (Objects.equals(playerChoice, 1)) {
             choice = PlayerChoice.ATTACK;
         } else if (Objects.equals(playerChoice, 2)) {
@@ -70,6 +72,8 @@ public class Choices {
         } else if (Objects.equals(playerChoice, 4)) {
             choice = PlayerChoice.ITEMS;
         } else if (Objects.equals(playerChoice, 5)) {
+            choice = PlayerChoice.EQUIPMENT;
+        } else if (Objects.equals(playerChoice, 6)) {
             choice = PlayerChoice.STATS;
         } else {
             choice = PlayerChoice.INVALID;

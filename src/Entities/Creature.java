@@ -1,6 +1,6 @@
 package Entities;
 
-import Items.ItemList;
+import Items.ConsumableItemList;
 import Items.Items;
 import Utilities.Dice;
 
@@ -85,14 +85,14 @@ public class Creature extends Player {
     }
 
     // item dropper
-    public void creatureDrop(Creature enemy, Player character, ItemList item){
+    public void creatureDrop(Creature enemy, Player character, ConsumableItemList item){
         int dropChance = Dice.DiceFunction(100);
         if (dropChance > 70){
             Items.addItemBag(character, item, 1);
             System.out.println(enemy.getCreatureClass().getType() + " dropped: " + item.getItemName());
         }
     }
-    public  void superDrop(Creature enemy, Player character, ItemList item){
+    public  void superDrop(Creature enemy, Player character, ConsumableItemList item){
         int dropChance = Dice.DiceFunction(100);
         if (dropChance > 95){
             Items.addItemBag(character, item, 1);
@@ -101,9 +101,9 @@ public class Creature extends Player {
     }
 
     public void drop(Creature enemy, Player character){
-        enemy.creatureDrop(enemy, character, ItemList.MP_POTY);
-        enemy.creatureDrop(enemy, character, ItemList.HP_POTY);
-        enemy.superDrop(enemy, character, ItemList.MP_SUPER_POTY);
-        enemy.superDrop(enemy, character, ItemList.HP_SUPER_POTY);
+        enemy.creatureDrop(enemy, character, ConsumableItemList.MP_POTY);
+        enemy.creatureDrop(enemy, character, ConsumableItemList.HP_POTY);
+        enemy.superDrop(enemy, character, ConsumableItemList.MP_SUPER_POTY);
+        enemy.superDrop(enemy, character, ConsumableItemList.HP_SUPER_POTY);
     }
 }

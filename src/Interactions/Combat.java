@@ -89,6 +89,7 @@ public class Combat {
             System.out.println("You only received : " + totalDamage + " damage");
             if (character.getHp() >= 0) {
                 System.out.println("Your current health is: " + character.getHp());
+                System.out.println("Health Bar [" + "-".repeat(character.getHp()) + "]");
             } else if (character.getHp() < 0) {
                 System.out.println("Your current health is: 0");
             }
@@ -100,6 +101,7 @@ public class Combat {
     }
 
     // Player tries to escape from enemy
+    // System works with dices, if player rolls a die with a smaller number than the enemy, the escape fails
     public static void EscapeChance(Player character, Creature enemy, int faces) {
         System.out.println("---------------------------------Escape---------------------------------\n");
         int playerEscape = character.setEscapeChance(Dice.DiceFunction(faces));
@@ -121,7 +123,7 @@ public class Combat {
     // Enemy attack player with physical damage
     public static void EnemyAttack(Player character, Creature enemy, int faces) {
         System.out.println("---------------------------------Combat---------------------------------\n");
-        int totalDamage = (enemy.getStrength() + Dice.DiceFunction(faces));
+        int totalDamage = (enemy.getStrength() + Dice.DiceFunction(faces) - character.getDefense());
         int result = (character.getHp() - totalDamage);
         Delays.timeDelay(1000);
         System.out.println("You have been attacked by:  " + enemy.getCreatureClass().getType());
@@ -131,6 +133,7 @@ public class Combat {
         } else {
             character.setHp(result);
             System.out.println("You have " + character.getHp() + " health left");
+            System.out.println("Health Bar [" + "-".repeat(character.getHp()) + "]");
             System.out.println("\n");
         }
     }
@@ -190,6 +193,11 @@ public class Combat {
                     character.playerStats();
                     break;
 
+                case EQUIPMENT:
+                    System.out.println("Equipment");
+                    ArmorItems.showEquipment(character);
+                    break;
+
                 case ITEMS:
                     switch (Choices.BagChoice(character)) {
                         case USE_ITEM: {
@@ -201,13 +209,13 @@ public class Combat {
                                 Scanner in = new Scanner(System.in);
                                 String playerItemChoice = in.nextLine();
                                 if (Objects.equals(playerItemChoice, "hp")) {
-                                    Items.useConsumable(character, ItemList.HP_POTY);
+                                    Items.useConsumable(character, ConsumableItemList.HP_POTY);
                                 } else if (Objects.equals(playerItemChoice, "mp")) {
-                                    Items.useConsumable(character, ItemList.MP_POTY);
+                                    Items.useConsumable(character, ConsumableItemList.MP_POTY);
                                 } else if (Objects.equals(playerItemChoice, "super hp")) {
-                                    Items.useConsumable(character, ItemList.HP_SUPER_POTY);
+                                    Items.useConsumable(character, ConsumableItemList.HP_SUPER_POTY);
                                 } else if (Objects.equals(playerItemChoice, "super mp")) {
-                                    Items.useConsumable(character, ItemList.MP_SUPER_POTY);
+                                    Items.useConsumable(character, ConsumableItemList.MP_SUPER_POTY);
                                 } else if (Objects.equals(playerItemChoice, "help")){
                                     System.out.println("Health potions are 'hp'");
                                     System.out.println("Mana potions are 'mp'");
@@ -227,13 +235,13 @@ public class Combat {
                                 Scanner in = new Scanner(System.in);
                                 String playerItemChoice = in.nextLine();
                                 if (Objects.equals(playerItemChoice, "hp")) {
-                                    Items.useItemBag(character, ItemList.HP_POTY, 1);
+                                    Items.useItemBag(character, ConsumableItemList.HP_POTY, 1);
                                 } else if (Objects.equals(playerItemChoice, "mp")) {
-                                    Items.useItemBag(character, ItemList.MP_POTY, 1);
+                                    Items.useItemBag(character, ConsumableItemList.MP_POTY, 1);
                                 } else if (Objects.equals(playerItemChoice, "super hp")) {
-                                    Items.useItemBag(character, ItemList.HP_SUPER_POTY, 1);
+                                    Items.useItemBag(character, ConsumableItemList.HP_SUPER_POTY, 1);
                                 } else if (Objects.equals(playerItemChoice, "super mp")) {
-                                    Items.useItemBag(character, ItemList.MP_SUPER_POTY, 1);
+                                    Items.useItemBag(character, ConsumableItemList.MP_SUPER_POTY, 1);
                                 } else if (Objects.equals(playerItemChoice, "help")){
                                     System.out.println("Health potions are 'hp'");
                                     System.out.println("Mana potions are 'mp'");
@@ -242,7 +250,6 @@ public class Combat {
                                     System.out.println("You didn't type a valid option");
                                 }
                             }
-
                         case GO_BACK:
                             break;
                     }

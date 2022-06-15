@@ -2,7 +2,8 @@ package Entities;
 
 import java.util.*;
 
-import Items.ItemList;
+import Items.ArmorType;
+import Items.ConsumableItemList;
 import Utilities.Delays;
 
 public class Player {
@@ -20,7 +21,13 @@ public class Player {
     private Races race;
     private int escapeChance;
 
-    static Map<ItemList, Integer> itemBag = new HashMap<>();
+    static Map<ConsumableItemList, Integer> itemBag = new HashMap<>();
+
+    public static List<String> helmetArmor = new ArrayList<>();
+    public static List<String> chestArmor = new ArrayList<>();
+    public static List<String> legsArmor = new ArrayList<>();
+    public static List<String> feetArmor = new ArrayList<>();
+    public static List<String> handsArmor = new ArrayList<>();
     static List<String> spells = new ArrayList<>();
 
     // Constructor with class and race fields
@@ -55,11 +62,30 @@ public class Player {
     }
     // ---------------------------------------------Getters and Setters-----------------------------------------
 
-    public Map<ItemList, Integer> getItemBag() {
+    public Map<ConsumableItemList, Integer> getItemBag() {
         return itemBag;
     }
+    public List getArmorType(List type){
+        return type;
+    }
 
-    public void setItemBag(Map<ItemList, Integer> itemBag) {
+    public List<String> getHelmetArmor() {
+        return helmetArmor;
+    }
+    public List<String> getChestArmor() {
+        return chestArmor;
+    }
+    public List<String> getLegsArmor() {
+        return legsArmor;
+    }
+    public List<String> getFeetArmor() {
+        return feetArmor;
+    }
+    public List<String> getHandsArmor() {
+        return handsArmor;
+    }
+
+    public void setItemBag(Map<ConsumableItemList, Integer> itemBag) {
         Player.itemBag = itemBag;
     }
 
@@ -182,6 +208,7 @@ public class Player {
         System.out.println("|-----------------------" + "Experience: " + this.getExperience() + "----------------------|");
         System.out.println("|-----------------------" + "Life Points: " + hp + "--------------------|");
         System.out.println("|-----------------------" + "Strength: " + strength + "-----------------------|");
+        System.out.println("|-----------------------" + "Defense: " + defense + "-----------------------|");
         System.out.println("|-----------------------" + "Mana: " + mp + "---------------------------|");
         System.out.println("|-----------------------" + "Magic Might: " + magicalMight + "--------------------|");
         System.out.println("|-----------------------" + "Gold: " + gold + "----------------------------|");
@@ -199,6 +226,7 @@ public class Player {
         System.out.println("|-----------------------" + "Experience: " + experience + "---------------------|");
         System.out.println("|-----------------------" + "Life Points: +" + this.getLevel().getHp() + "--------------------|");
         System.out.println("|-----------------------" + "Strength: +" + this.getLevel().getStrength() + "-----------------------|");
+        System.out.println("|-----------------------" + "Defense: " + this.getLevel().getDefense() + "-----------------------|");
         System.out.println("|-----------------------" + "Mana: +" + this.getLevel().getMp() + "--------------------------|");
         System.out.println("|-----------------------" + "Magic Might: +" + this.getLevel().getMagicalMight() + "--------------------|");
         System.out.println("|-----------" + "Experience needed to level up: " + Levels.getNextLvl(this.getLevel()).getExpNeeded() + "--------------|");

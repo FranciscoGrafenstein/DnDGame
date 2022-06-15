@@ -1,6 +1,6 @@
 package Items;
 
-public enum ItemList {
+public enum ConsumableItemList {
     HP_POTY("Health Potion", 15),
     MP_POTY("Mana Potion", 15),
     HP_SUPER_POTY("Super Health Potion", 50),
@@ -10,7 +10,7 @@ public enum ItemList {
     private final String itemName;
     private final int restore;
 
-    ItemList(String itemName, int restore) {
+    ConsumableItemList(String itemName, int restore) {
         this.itemName = itemName;
         this.restore = restore;
     }
@@ -27,4 +27,5 @@ public enum ItemList {
     public int getRestore() {
         return restore;
     }
+
 }
