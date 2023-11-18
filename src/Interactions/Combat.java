@@ -14,7 +14,7 @@ import static Magic.Spells.*;
 
 public class Combat {
 
-    // Method that adds experiences, gold and in the case that you have enough exp, it levels ou up
+    // Method that adds experience, gold and in the case that you have enough exp, it levels you up
     public static void enemyKilled(Player character, Creature enemy){
         System.out.println("You killed the beast!\n");
         System.out.println("Experience gained: " + enemy.getExperience());
@@ -149,7 +149,7 @@ public class Combat {
         System.out.println("Level: " + enemy.getCreatureLevel().getLvlName());
         System.out.println("Enemy stats: HP" +
                 "\t Strength");
-        System.out.println("\t" + "\t" + "\t " + enemy.getHp() + "\t " + enemy.getStrength());
+        System.out.println("\t" + "\t" + "\t " + "[" +enemy.getHp() + "]" + "\t " + "[" + enemy.getStrength() + "]");
 
         while (!character.isDead() && !enemy.isDead()) {
             switch (Choices.choice()) {
